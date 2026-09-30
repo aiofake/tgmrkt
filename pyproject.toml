@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tgmrkts"
+version = "0.1.0"
+description = "Asynchronous Python client for the MRKT API"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+keywords = ["telegram", "markets", "sdk", "mrkt"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "aiohttp>=3.8.0",
+    "kurigram",
+]
+
+[project.urls]
+Homepage = "https://github.com/aiofake/tgmrkt"
+Repository = "https://github.com/aiofake/tgmrkt"
+Issues = "https://github.com/aiofake/tgmrkt/issues"
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2",
+    "pytest>=7.0",
+    "twine>=5.0",
+]
+
+[tool.setuptools]
+packages = ["tgmrkts"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
