@@ -10,24 +10,21 @@ An asynchronous Python client for the [MRKT](https://t.me/mrkt) API.
 - Access-token and Telegram-session authentication
 - Optional proxy support
 
-## Requirements
-
-- Python 3.10 or newer
-- `aiohttp`
-- `kurigram` for Telegram-session authentication
-
-Install dependencies:
+## Installation
 
 ```bash
-pip install aiohttp kurigram
+python -m pip install tgmrkts
 ```
+
+Python 3.10 or newer is required. `aiohttp` and `kurigram` are installed as
+package dependencies; `kurigram` is used for Telegram-session authentication.
 
 ## Quick Start
 
 ```python
 import asyncio
 
-from mrkt.client import MrktClient
+from tgmrkts import MrktClient
 
 
 async def get_orders(client: MrktClient, collection: str) -> None:
@@ -71,7 +68,7 @@ client = MrktClient(token="YOUR_ACCESS_TOKEN")
 ```python
 import asyncio
 
-from mrkt.client import MrktClient
+from tgmrkts import MrktClient
 
 
 async def main() -> None:
@@ -142,7 +139,7 @@ async with MrktClient(token="YOUR_ACCESS_TOKEN") as api:
 ```python
 import asyncio
 
-from mrkt.pool import MrktPool
+from tgmrkts import MrktPool
 
 
 async def get_balance(client) -> dict:
@@ -191,11 +188,22 @@ pool = await MrktPool.from_sessions(
 
 ## Development
 
-Run a syntax check from the repository root:
+Install the development dependencies and run the tests/build checks:
 
 ```bash
-python -m py_compile *.py
+python -m pip install -e ".[dev]"
+python -m pytest
+python -m build
+python -m twine check dist/*
 ```
+
+GitHub Actions runs these checks for pushes and pull requests. Before the first
+release, configure a Trusted Publisher on both PyPI and TestPyPI with owner
+`aiofake`, repository `tgmrkt`, workflow
+`.github/workflows/pypi-publish.yml`, and environments `pypi` and `testpypi`
+respectively. Run the publish workflow manually to publish to TestPyPI; publish
+a GitHub Release to publish to PyPI. Increment the version in `pyproject.toml`
+for every release.
 
 ## License
 
