@@ -10,24 +10,23 @@ An asynchronous Python client for the [MRKT](https://t.me/mrkt) API.
 - Access-token and Telegram-session authentication
 - Optional proxy support
 
-## Requirements
+## Installation
 
-- Python 3.10 or newer
-- `aiohttp`
-- `kurigram` for Telegram-session authentication
-
-Install dependencies:
+Install the package from [PyPI](https://pypi.org/project/tgmrkts/):
 
 ```bash
-pip install aiohttp kurigram
+python -m pip install tgmrkts
 ```
+
+Requires Python 3.10 or newer. The required dependencies (`aiohttp` and
+`kurigram`) are installed automatically.
 
 ## Quick Start
 
 ```python
 import asyncio
 
-from mrkt.client import MrktClient
+from tgmrkts import MrktClient
 
 
 async def get_orders(client: MrktClient, collection: str) -> None:
@@ -71,7 +70,7 @@ client = MrktClient(token="YOUR_ACCESS_TOKEN")
 ```python
 import asyncio
 
-from mrkt.client import MrktClient
+from tgmrkts import MrktClient
 
 
 async def main() -> None:
@@ -142,7 +141,7 @@ async with MrktClient(token="YOUR_ACCESS_TOKEN") as api:
 ```python
 import asyncio
 
-from mrkt.pool import MrktPool
+from tgmrkts import MrktPool
 
 
 async def get_balance(client) -> dict:
@@ -188,15 +187,3 @@ pool = await MrktPool.from_sessions(
 - `proxy`: optional HTTP or SOCKS proxy
 - `headers`: additional HTTP headers
 - `packed`: attach gifts, orders, and offers API objects
-
-## Development
-
-Run a syntax check from the repository root:
-
-```bash
-python -m py_compile *.py
-```
-
-## License
-
-Released under the MIT License. See [LICENSE](LICENSE).
